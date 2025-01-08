@@ -5,7 +5,8 @@ import {
   decrement,
   incrementByAmount,
 } from "./features/counterSlice";
-
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 function App() {
   const dispatch = useDispatch();
   const count = useSelector((state) => state.counter.value);
