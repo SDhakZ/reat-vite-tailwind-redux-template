@@ -7,6 +7,7 @@ import {
 } from "./features/counterSlice";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
+import "./index.css";
 function App() {
   const dispatch = useDispatch();
   const count = useSelector((state) => state.counter.value);
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "2rem" }}>
-      <h1>Redux Toolkit Counter Example</h1>
+      <h1 className="text-xl">Redux Toolkit Counter Example</h1>
       <p>Count: {count}</p>
 
       <button onClick={handleDecrement}>-</button>
