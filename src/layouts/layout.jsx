@@ -14,8 +14,8 @@ const Layout = () => {
 
   return (
     <div>
-      <div className="flex justify-between w-full px-10 py-10 bg-white">
-        Project Space -----Navbar here-----
+      <div className="flex items-center justify-between w-full px-10 py-10 bg-white">
+        <p className="text-2xl font-semibold text-black">Project Space</p>
         <button
           className="px-10 py-2 text-white bg-red-500 rounded"
           onClick={() => handleLogout()}
