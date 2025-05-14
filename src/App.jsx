@@ -1,38 +1,25 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  increment,
-  decrement,
-  incrementByAmount,
-} from "./features/counterSlice";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./layouts/layout";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import DashboardRoutes from "./pages/Dashboard/DashboardRoutes";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import Login from "./pages/Auth/Login";
+import RequireAuth from "./components/RequireAuth";
 config.autoAddCss = false;
-import "./index.css";
 function App() {
-  const dispatch = useDispatch();
-  const count = useSelector((state) => state.counter.value);
-
-  const handleIncrement = () => {
-    dispatch(increment());
-  };
-
-  const handleDecrement = () => {
-    dispatch(decrement());
-  };
-
-  const handleIncrementByAmount = (amount) => {
-    dispatch(incrementByAmount(amount));
-  };
-
   return (
-    <div style={{ textAlign: "center", marginTop: "2rem" }}>
-      <h1 className="text-xl">Redux Toolkit Counter Example</h1>
-      <p>Count: {count}</p>
+    <Routes>
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-      <button onClick={handleDecrement}>-</button>
-      <button onClick={handleIncrement}>+</button>
-      <button onClick={() => handleIncrementByAmount(5)}>+5</button>
-    </div>
+      <Route element={<RequireAuth />}>
+        <Route element={<Layout />}>
+          <Route path="/dashboard/*" element={<DashboardRoutes />} />
+        </Route>
+      </Route>
+
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
